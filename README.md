@@ -1,2 +1,2 @@
 # SCA-DevOps-levelled-membership-assessment
-Tasks for SCA-DevOps Levelled Membership Assessmants
+This repository was created for the SCA-DevOps Levelled Membership Assessments
