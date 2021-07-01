@@ -1,20 +1,19 @@
 # our base image
-FROM python:3.8-slim-buster
+FROM python:3.6
 
-# Install python and pip
+# create working directory
 WORKDIR /app
-# install Python modules needed by the Python app
-COPY requirements.txt requirements.txt
 
-RUN pip3 install -r requirements.txt
+# Install any needed packages specified in requirements.txt
+COPY requirements.txt /app
+RUN pip install -r requirements.txt
 
-# copy files required for the app to run
-COPY . .
-
-COPY templates/main.html /app/templates/
+# Run main.py when the container launches
+COPY main.py /app
 
 # tell the port number the container should expose
 EXPOSE 5000
 
+ENTRYPOINT [ "python" ]
 # run the application
-CMD [ "python", "/app/main.py"]
+CMD ["main.py"]

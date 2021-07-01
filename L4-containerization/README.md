@@ -40,8 +40,9 @@ Checkout into the 'docker' branch
 
 5.  View the image in your localhost port 8888 by typing ```localhost:8888``` in your browser
 
+![image](https://user-images.githubusercontent.com/49791498/124098371-687c0b80-da54-11eb-99d5-a4aa835dd17d.png)
 
-*Docker Image*
+*Docker Container Image*
 
 6.  Push the image to docker hub
     ```
@@ -50,34 +51,38 @@ Checkout into the 'docker' branch
     ```
     The image is published on [dockerhub](https://hub.docker.com/repository/docker/mbaoma/l4-containerization)
 
+7.  Build the docker compose file
+    ```
+    docker-compose up
+    ```
 
-7.  Make your changes
+8.  Make your changes
 
-8.  Remove the previous docker container by running:
+9.  Remove the previous docker container by running:
     ```
     docker rm -f container-id
     ```
     
-9.  Create the updated image, assign it a tag, 'latest'
+10. Create the updated image, assign it a tag, 'latest'
     ```
     docker build -t mbaoma/l4-containerization:latest .
     ```
     
-10. Run the docker file
+11. Run the docker file
     ```
     docker run -p 8888:5000 --name mbaoma/l4-containerization mbaoma/l4-containerization:latest 
     ```
     
-11. Push the updated image to DockerHub
+12. Push the updated image to DockerHub
     ```
     docker push mbaoma/l4-containerization:latest 
     ```
 
-12. View the update image in your local browser by typing ```localhost:8888```
+13. View the update image in your local browser by typing ```localhost:8888```
 
     *Updated docker image*
 
     The updated image is published on [dockerhub]()
 
 ## Docker Hub Repo
-The image is published on [https://hub.docker.com/repository/docker/mbaoma/cloud-school-image](https://hub.docker.com/repository/docker/mbaoma/cloud-school-image)
+The image is published on [https://hub.docker.com/repository/docker/mbaoma/l4-containerization](https://hub.docker.com/repository/docker/mbaoma/l4-containerization)
