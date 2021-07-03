@@ -4,8 +4,6 @@ services:
     image: mysql:8.0.19
     command: '--default-authentication-plugin=mysql_native_password'
     restart: always
-    secrets:
-      - db-password
     volumes:
       - db-data:/var/lib/mysql
     networks:
@@ -17,8 +15,10 @@ services:
   app:
     build: ./
     restart: always
-    secrets:
-      - db-password
+    environemnt:
+      - FLASK_ENV=development
+    ports:
+      - 5000:5000
     networks:
       - backend-network
       - frontend-network
@@ -34,12 +34,9 @@ services:
       memlock:
         soft: -1
         hard: -1
-    #volumes:
-      #- esdata:/usr/share/elasticsearch/data
     ports:
       - "9200:9200"
-    #networks:
-      #- esnet
+    
     
   kibana:
       image: docker.elastic.co/kibana/kibana:6.6.1
@@ -48,22 +45,9 @@ services:
         - ./kibana.yml:/usr/share/kibana/config/kibana.yml
       ports:
         - "5601:5601"
-      #networks:
-        #- esnet
-    
-  #volumes:
-      #esdata:
-          #driver: local
-  #networks:
-      #esnet:
+      
 
-  web:
-    build: ./
-    restart: always
-    ports:
-      - 5000:5000
-    networks:
-      - frontend-network
+  
 volumes:
   db-data:
 secrets:
