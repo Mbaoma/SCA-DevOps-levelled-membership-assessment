@@ -1,0 +1,11 @@
+{
+  "app_name": "APP NAME",
+  "secret_key": "SECRET_KEY",
+  "db": {
+    "host": "",
+    "user": "",
+    "passwd": "",
+    "database": ""
+  }
+}
+
