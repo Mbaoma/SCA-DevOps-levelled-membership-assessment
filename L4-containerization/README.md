@@ -78,10 +78,11 @@ Checkout into the 'docker' branch
     ```
 
 13. View the update image in your local browser by typing ```localhost:8888```
+
      ![image](https://user-images.githubusercontent.com/49791498/124457269-8498e900-dd83-11eb-9a5d-48c97e5aa158.png)
     *Updated docker image*
 
-    The updated image is published on [dockerhub](https://hub.docker.com/repository/docker/mbaoma/l4-containerization)
+14. The updated image is published on [dockerhub](https://hub.docker.com/repository/docker/mbaoma/l4-containerization)
 
 ## Docker Hub Repo
 The image is published on [https://hub.docker.com/repository/docker/mbaoma/l4-containerization](https://hub.docker.com/repository/docker/mbaoma/l4-containerization)
