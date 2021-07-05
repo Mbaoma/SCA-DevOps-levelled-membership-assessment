@@ -55,30 +55,34 @@ Checkout into the 'docker' branch
     ```
     docker-compose up
     ```
+8.  Docker containers
+    ```
+    ![image](https://user-images.githubusercontent.com/49791498/124454078-f66f3380-dd7f-11eb-97a1-671570aa92d8.png)
+    ```
+    
+9.  Make your changes
 
-8.  Make your changes
-
-9.  Remove the previous docker container by running:
+10.  Remove the previous docker container by running:
     ```
     docker rm -f container-id
     ```
     
-10. Create the updated image, assign it a tag, 'latest'
+11. Create the updated image, assign it a tag, 'latest'
     ```
     docker build -t mbaoma/l4-containerization:latest .
     ```
     
-11. Run the docker file
+12. Run the docker file
     ```
     docker run -p 8888:5000 --name mbaoma/l4-containerization mbaoma/l4-containerization:latest 
     ```
     
-12. Push the updated image to DockerHub
+13. Push the updated image to DockerHub
     ```
     docker push mbaoma/l4-containerization:latest 
     ```
 
-13. View the update image in your local browser by typing ```localhost:8888```
+14. View the update image in your local browser by typing ```localhost:8888```
 
     *Updated docker image*
 
