@@ -62,31 +62,26 @@ Checkout into the 'docker' branch
     
 9.  Make your changes
 
-10.  Remove the previous docker container by running:
-    ```
-    docker rm -f container-id
-    ```
-    
-11. Create the updated image, assign it a tag, 'latest'
+10. Create the updated image, assign it a tag, 'latest'
     ```
     docker build -t mbaoma/l4-containerization:latest .
     ```
     
-12. Run the docker file
+11. Run the docker file
     ```
-    docker run -p 8888:5000 --name mbaoma/l4-containerization mbaoma/l4-containerization:latest 
+    docker run -p 8888:5000 --name l4-containerization2 mbaoma/l4-containerization:latest 
     ```
     
-13. Push the updated image to DockerHub
+12. Push the updated image to DockerHub
     ```
     docker push mbaoma/l4-containerization:latest 
     ```
 
-14. View the update image in your local browser by typing ```localhost:8888```
-
+13. View the update image in your local browser by typing ```localhost:8888```
+     ![image](https://user-images.githubusercontent.com/49791498/124457269-8498e900-dd83-11eb-9a5d-48c97e5aa158.png)
     *Updated docker image*
 
-    The updated image is published on [dockerhub]()
+    The updated image is published on [dockerhub](https://hub.docker.com/repository/docker/mbaoma/l4-containerization)
 
 ## Docker Hub Repo
 The image is published on [https://hub.docker.com/repository/docker/mbaoma/l4-containerization](https://hub.docker.com/repository/docker/mbaoma/l4-containerization)
