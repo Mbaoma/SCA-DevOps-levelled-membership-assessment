@@ -1,58 +1,66 @@
-version: "3.7"
+version: "3.3"
 services:
-  db:
-    image: mysql:8.0.19
-    command: '--default-authentication-plugin=mysql_native_password'
-    restart: always
-    volumes:
-      - db-data:/var/lib/mysql
-    networks:
-      - backend-network
-    environment:
-      - MYSQL_DATABASE=example
-      - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/db-password
-  
-  app:
-    build: ./
-    restart: always
-    environemnt:
-      - FLASK_ENV=development
-    ports:
-      - 5000:5000
-    networks:
-      - backend-network
-      - frontend-network
-
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.6.1
-    container_name: elasticsearch
-    environment:
-      - cluster.name=docker-cluster
-      - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    ports:
-      - "9200:9200"
-    
-    
-  kibana:
-      image: docker.elastic.co/kibana/kibana:6.6.1
-      container_name: kibana
+    db:
+      image: mysql:5.7
+      volumes:
+        - db_data:/var/lib/mysql
+      restart: always
       environment:
-        - ./kibana.yml:/usr/share/kibana/config/kibana.yml
-      ports:
-        - "5601:5601"
+        MYSQL_ROOT_PASSWORD: somewordpress
+        MYSQL_DATABASE: wordpress
+        MYSQL_USER: wordpress
+        MYSQL_PASSWORD: wordpress
       
+    wordpress:
+      depends_on:
+        - db
+      image: wordpress:latest
+      volumes:
+        - wordpress_data:/var/www/html
+      ports:
+        - "8000:80"
+      restart: always
+      environment:
+        WORDPRESS_DB_HOST: db:3306
+        WORDPRESS_DB_USER: wordpress
+        WORDPRESS_DB_PASSWORD: wordpress
+        WORDPRESS_DB_NAME: wordpress
+  
+    app:
+      build: .
+      environment:
+        - FLASK_ENV=development
+      ports:
+        - 5000:5000
+   
+    elasticsearch:
+      image: docker.elastic.co/elasticsearch/elasticsearch:6.6.1
+      container_name: elasticsearch
+      environment:
+        - cluster.name=docker-cluster
+        - bootstrap.memory_lock=true
+        - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      ulimits:
+        memlock:
+          soft: -1
+          hard: -1
+      ports:
+        - "9200:9200"
+    
+    kibana:
+        image: docker.elastic.co/kibana/kibana:6.6.1
+        container_name: kibana
+        environment:
+          - ./kibana.yml:/usr/share/kibana/config/kibana.yml
+        ports:
+          - "5601:5601"
+        
 
   
 volumes:
-  db-data:
-secrets:
-  db-password:
-    file: db/password.txt
-networks:
+  db_data: {}
+  wordpress_data: {}
+
+  networks:
   backend-network:
   frontend-network:
